@@ -1,0 +1,31 @@
+{
+  "name": "HookStack",
+  "description": "A package that receives webhooks, stores them for later retrieval and when retrieved then auto deletes the webhooks.",
+  "homepage": "https://tcollis.co.uk/",
+  "keywords": [
+    "PPHook",
+    "webhook",
+    "util",
+    "server",
+    "relay",
+    "HookStack"
+  ],
+  "author": "Tom Collis <tom.collis@gmail.com> (https://tcollis.co.uk/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomcollis/HookStack.git"
+  },
+  "main": "index.js",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "deta": "^1.1.0",
+    "express": "^4.18.2"
+  },
+  "bugs": {
+    "url": "https://github.com/tomcollis/HookStack/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

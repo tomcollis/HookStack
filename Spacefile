@@ -1,0 +1,17 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: HookStack
+    src: ./
+    engine: nodejs16
+    public_routes:
+      - "/*"
+    primary: true
+    presets:
+      env:
+        - name: MY_DATA_KEY
+          description: Integrate my new Space App with my new Collection. Yes!!
+          default: "please input your data key"
+        - name: API_KEY
+          description: API Key for retrieving data
+          default: "very-long-password"

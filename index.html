@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPHook</title>
+  <meta name="description" content="PPHook">
+  <meta name="author" content="Tom Collis">
+  <meta property="og:title" content="PPHook">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/tomcollis/PPHook">
+  <meta property="og:description" content="This service allows webhooks to be Pushed (submitted) and saved, and then Pulled (retrieved) at any time in the future.">
+  <meta property="og:image" content="https://github.com/tomcollis/PPHook/blob/main/img/PPHook-Logo_128px.png?raw=true">
+  <link rel="icon" href="https://github.com/tomcollis/PPHook/blob/main/img/PPHook-Logo_SVG.svg?raw=true" type="image/svg+xml">
+  <link rel="apple-touch-icon" href=""https://github.com/tomcollis/PPHook/blob/main/img/PPHook-Logo_512px.png?raw=true">
+  <style>
+    body {
+      background-color: #fff;
+      margin: 1% 4% 1%;
+      font-family: Verdana, sans-serif;
+    }
+    code {
+      color:#c7254e;
+      background-color:#f9f2f4;
+      border-radius:4px;
+      padding:2px 4px;
+    }
+    pre {
+      display:block;
+      margin:0 0 10px;
+      word-break:break-all;
+      word-wrap:break-word;
+      color:#333;
+      background-color:#f5f5f5;
+      border:1px solid #ccc;
+      border-radius:4px;
+    }
+    table {
+      border-collapse: collapse;
+      border-width: 1px;
+      border-color: #DDDDDD;
+      border-style: solid;
+      color: #000000;
+    }
+    table td, table th {
+      border-width: 1px;
+      border-color: #DDDDDD;
+      border-style: solid;
+      padding: 5px;
+    }
+    table thead {
+  background-color: #ddd;
+  }
+  </style>
+</head>
+<body>
+<p><img src="https://github.com/tomcollis/PPHook/blob/main/img/PPHook-Banner.png?raw=true" alt="PPHook"></p>
+<h1 id="pphook-p-ush-p-ull-web-hook-">PPHook = <strong>P</strong>(ush)<strong>P</strong>(ull)(Web)<strong>Hook</strong></h1>
+<p><a href="https://paypal.me/TomCollisUK/2"><img src="https://img.shields.io/badge/Buy%20me%20-coffee!-orange.svg?logo=buy-me-a-coffee&amp;color=795548" alt="Buy me coffee"></a>
+<a href="https://github.com/tomcollis/PPHook/stargazers"><img src="https://img.shields.io/github/stars/tomcollis/PPHook" alt="GitHub stars"></a>
+<a href="https://github.com/tomcollis/PPHook/issues"><img src="https://img.shields.io/github/issues/tomcollis/PPHook" alt="GitHub issues"></a>
+<a href="https://github.com/tomcollis/PPHook/releases/latest"><img src="https://img.shields.io/github/downloads/tomcollis/PPHook/total.svg?style=flat" alt="Github All Releases download count"></a>
+<a href="https://github.com/tomcollis/PPHook/releases/latest"><img src="https://img.shields.io/github/v/release/tomcollis/PPHook.svg?style=flat" alt="GitHub latest release version"></a></p>
+<p><a href="https://go.deta.dev/deploy"><img src="https://button.deta.dev/1/svg" alt="Deploy"></a></p>
+<p>This app/service was created because I wanted to use webhooks with self-hosted apps and did not want the requirements of installing agents, opening firewall ports or needing a static IP and having the system be available 24/7 to ensure no webhooks are missed. There are many services (free and chargeable) that provide a webhook relay service, but the ones I looked at just relayed the information to another webhook, which did not solve my problem.</p>
+<p>This service allows webhooks to be <strong>Pushed</strong> (submitted) and saved, and then <strong>Pulled</strong> (retrieved) at any time in the future. The webhooks can be tagged with a source system identifier (source-id), and then downloaded by source system, this allows different processes or tools to download the webhooks from specific systems.</p>
+<p>This service can also be used with some cloud hosted automation services that do not allow webhooks but do allow scheduled get requests (e.g., Microsoft Power Automate).</p>
+<hr>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>To run this code, you will need to provide following environment variables, you will be prompted automatically when using Deploy to <a href="https://www.deta.sh/">Deta</a>.</p>
+<p><code>DETA_PROJECT_KEY</code> - automatically populate when deployed to <a href="https://www.deta.sh/">Deta Micro</a> or <a href="https://deta.space/">Deta Space</a></p>
+<p><code>API_KEY</code> - can be generated at <a href="https://tools.keycdn.com/sha256-online-generator">keycdn Tools</a></p>
+<hr>
+<h2 id="deploy-to-deta-https-www-deta-sh-">Deploy to <a href="https://www.deta.sh/">Deta</a></h2>
+<p>To deploy this project on Deta, click the button below:</p>
+<p><a href="https://go.deta.dev/deploy"><img src="https://button.deta.dev/1/svg" alt="Deploy"></a></p>
+<p>You will automatically be prompted to enter the required environment variables.
+All data will be private in your own account.</p>
+<hr>
+<h2 id="api-reference">API Reference</h2>
+<h4 id="post-webhook">Post Webhook</h4>
+<pre><code class="lang-http">  <span class="hljs-attribute">POST</span> /p
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>source</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><strong>Optional but Recommended</strong>. Source System Key, can be anything you want or left blank .</td>
+</tr>
+</tbody>
+</table>
+<p>All data is stored in your <a href="https://www.deta.sh/">Deta</a> account in a <a href="https://www.deta.sh/">Deta</a> Base called &#39;PPHook&#39;. This means your data is not available for me or anyone else to see, but do not forget it is only protected by your API key. Your API Key is not required to post data.</p>
+<h6 id="example">Example</h6>
+<pre><code class="lang-http">  POST /p?<span class="hljs-keyword">source</span>=<span class="hljs-keyword">system</span>-name
+  BODY {
+        <span class="hljs-string">"value1"</span>: <span class="hljs-string">"a-to-z"</span>,
+        <span class="hljs-string">"value2"</span>: <span class="hljs-string">"1-to-9"</span>,
+        <span class="hljs-string">"value3"</span>: <span class="hljs-string">"500"</span>
+        }
+</code></pre>
+<p>The BODY data can be in any format, with as many or as few fields as you want. The service will reply in the following format.</p>
+<pre><code class="lang-http">  RESPONSE <span class="hljs-number">200</span>
+  BODY {
+          <span class="hljs-string">"success"</span>: <span class="hljs-string">"data received"</span>,
+          <span class="hljs-string">"key"</span>: <span class="hljs-number">1628781752490</span>,
+          <span class="hljs-string">"body"</span>: {
+            <span class="hljs-string">"value1"</span>: <span class="hljs-string">"a-to-z"</span>,
+            <span class="hljs-string">"value2"</span>: <span class="hljs-string">"1-to-9"</span>,
+            <span class="hljs-string">"value3"</span>: <span class="hljs-string">"500"</span>
+          },
+          <span class="hljs-string">"source"</span>: <span class="hljs-string">"system-2"</span>
+        }
+</code></pre>
+<p>This response is what is stored in the <a href="https://www.deta.sh/">Deta</a> Base:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>key</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left">This is automatically generated with a UNIX Timestamp.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>body</code></td>
+<td style="text-align:left"><code>JSON</code></td>
+<td style="text-align:left">This is the body of your POST, no validation or modification is performed.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>source</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left">This is the key used to collate the webhooks that are stored. If this field is left blank (not recommended) when posting, it will be modified to &#39;unknown&#39;.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="get-items-for-source-system-by-id">Get items for source system by id</h4>
+<pre><code class="lang-http">  GET <span class="hljs-regexp">/webhooks/</span><span class="hljs-variable">$source</span>
+</code></pre>
+<p>This will return all webhooks from the system with a matching source key and delete all corresponding results from the <a href="https://www.deta.sh/">Deta</a> Base by design to minimise the length of time your data is stored online.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>api-key</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><strong>Required</strong>. Your API key</td>
+</tr>
+</tbody>
+</table>
+<h6 id="example-response">Example Response</h6>
+<pre><code class="lang-http">  GET /webhooks/system-<span class="hljs-number">2</span>?api-key=verysecure
+  BODY
+  {
+      <span class="hljs-string">"items"</span>: [
+          {
+              <span class="hljs-string">"body"</span>: {
+                  <span class="hljs-string">"value1"</span>: <span class="hljs-string">"a-to-z"</span>,
+                  <span class="hljs-string">"value2"</span>: <span class="hljs-string">"1-to-9"</span>,
+                  <span class="hljs-string">"value3"</span>: <span class="hljs-string">"500"</span>
+              },
+              <span class="hljs-string">"key"</span>: <span class="hljs-string">"1628782459290"</span>,
+              <span class="hljs-string">"source"</span>: <span class="hljs-string">"system2"</span>
+          },
+          {
+              <span class="hljs-string">"body"</span>: {
+                  <span class="hljs-string">"value1"</span>: <span class="hljs-string">"a-to-z"</span>,
+                  <span class="hljs-string">"value2"</span>: <span class="hljs-string">"1-to-9"</span>,
+                  <span class="hljs-string">"value3"</span>: <span class="hljs-string">"500"</span>
+              },
+              <span class="hljs-string">"key"</span>: <span class="hljs-string">"1628782460100"</span>,
+              <span class="hljs-string">"source"</span>: <span class="hljs-string">"system2"</span>
+          }
+      ]
+  }
+</code></pre>
+<p>The webhooks received are returned in an array called &#39;items&#39;, this means they can be processed through another application.</p>
+<h4 id="get-items-for-source-system-unknown">Get items for source system unknown</h4>
+<pre><code class="lang-http">  <span class="hljs-meta">GET</span> /webhooks
+</code></pre>
+<p>This will retrieve all webhooks posted without a source key, it will also delete all corresponding results from the database by design.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>api-key</code></td>
+<td style="text-align:left"><code>string</code></td>
+<td style="text-align:left"><strong>Required</strong>. Your API key</td>
+</tr>
+</tbody>
+</table>
+<p>The responses are the same as the above request with the included system-id.</p>
+<hr>
+<h2 id="feedback">Feedback</h2>
+<p>If you have any feedback, you can:</p>
+<p><a href="https://t.me/tomcollis"><img src="https://img.shields.io/static/v1?label=Message%20on&amp;message=Telegram&amp;color=27A7E7&amp;logo=telegram&amp;style=for-the-badge" alt=""></a></p>
+<p>or</p>
+<p><a href="https://github.com/tomcollis/PPHook/issues"><img src="https://img.shields.io/static/v1?label=Create%20New&amp;message=Issue&amp;color=4EC820&amp;logo=github&amp;style=for-the-badge" alt=""></a></p>
+<hr>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li>This was a sample app, used as my starting point. <a href="https://github.com/expressjs/express/blob/28db2c2c5cf992c897d1fbbc6b119ee02fe32ab1/examples/web-service/index.js">ExpressJS Example - Simple Web API</a></li>
+</ul>
+</body>
+</html>
