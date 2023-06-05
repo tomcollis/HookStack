@@ -1,13 +1,11 @@
-![PPHook](https://github.com/tomcollis/PPHook/blob/main/img/PPHook-Banner.png?raw=true)
+![HookStack](https://github.com/tomcollis/HookStack/blob/main/img/HookStack-Banner.png?raw=true)
 
-# PPHook = **P**(ush)**P**(ull)(Web)**Hook**
+# HookStack
 [![Buy me coffee](https://img.shields.io/badge/Buy%20me%20-coffee!-orange.svg?logo=buy-me-a-coffee&color=795548)](https://paypal.me/TomCollisUK/2)
-[![GitHub stars](https://img.shields.io/github/stars/tomcollis/PPHook)](https://github.com/tomcollis/PPHook/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/tomcollis/PPHook)](https://github.com/tomcollis/PPHook/issues)
-[![Github All Releases download count](https://img.shields.io/github/downloads/tomcollis/PPHook/total.svg?style=flat)](https://github.com/tomcollis/PPHook/releases/latest)
-[![GitHub latest release version](https://img.shields.io/github/v/release/tomcollis/PPHook.svg?style=flat)](https://github.com/tomcollis/PPHook/releases/latest)
-
-[![Deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy)
+[![GitHub stars](https://img.shields.io/github/stars/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/issues)
+[![Github All Releases download count](https://img.shields.io/github/downloads/tomcollis/HookStack/total.svg?style=flat)](https://github.com/tomcollis/HookStack/releases/latest)
+[![GitHub latest release version](https://img.shields.io/github/v/release/tomcollis/HookStack.svg?style=flat)](https://github.com/tomcollis/HookStack/releases/latest)
 
 This app/service was created because I wanted to use webhooks with self-hosted apps and did not want the requirements of installing agents, opening firewall ports or needing a static IP and having the system be available 24/7 to ensure no webhooks are missed. There are many services (free and chargeable) that provide a webhook relay service, but the ones I looked at just relayed the information to another webhook, which did not solve my problem.
 
@@ -18,18 +16,16 @@ This service can also be used with some cloud hosted automation services that do
 ___
 ## Environment Variables
 
-To run this code, you will need to provide following environment variables, you will be prompted automatically when using Deploy to [Deta](https://www.deta.sh/).
+To run this code, you will need to provide following environment variables, you will be prompted automatically when using [Deta Space](https://deta.space/).
 
-`DETA_PROJECT_KEY` - automatically populate when deployed to [Deta Micro](https://www.deta.sh/) or [Deta Space](https://deta.space/)
+`DETA_PROJECT_KEY` - automatically populate when deployed to [Deta Space](https://deta.space/)
 
-`API_KEY` - can be generated at [keycdn Tools](https://tools.keycdn.com/sha256-online-generator)
+`API_KEY` - you can use anything or generate something 'secure' at [keycdn Tools](https://tools.keycdn.com/sha256-online-generator)
 
 ___
-## Deploy to [Deta](https://www.deta.sh/)
+## Deploy to [Deta Space](https://deta.space/)
 
-To deploy this project on Deta, click the button below:
-
-[![Deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy)
+This app has not yet been published to Deta Space.
 
 You will automatically be prompted to enter the required environment variables.
 All data will be private in your own account.
@@ -47,7 +43,7 @@ ___
 | :-------- | :------- | :------------------------- |
 | `source` | `string` | **Optional but Recommended**. Source System Key, can be anything you want or left blank .|
 
-All data is stored in your [Deta](https://www.deta.sh/) account in a [Deta](https://www.deta.sh/) Base called 'PPHook'. This means your data is not available for me or anyone else to see, but do not forget it is only protected by your API key. Your API Key is not required to post data.
+All data is stored in your [Deta Space](https://deta.space/) account in a Deta Base called 'HookStack'. This means your data is not available for me or anyone else to see, but do not forget it is only protected by your API key. Your API Key is not required to post data.
 
 ###### Example
 
@@ -75,7 +71,7 @@ The BODY data can be in any format, with as many or as few fields as you want. T
           "source": "system-2"
         }
 ```
-This response is what is stored in the [Deta](https://www.deta.sh/) Base:
+This response is what is stored in the Deta Base:
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -90,7 +86,7 @@ ___
 ```http
   GET /webhooks/$source
 ```
-This will return all webhooks from the system with a matching source key and delete all corresponding results from the [Deta](https://www.deta.sh/) Base by design to minimise the length of time your data is stored online.
+This will return all webhooks from the system with a matching source key and delete all corresponding results from the Deta Base by design to minimise the length of time your data is stored online.
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -149,7 +145,7 @@ If you have any feedback, you can:
 
 or
 
-[![](https://img.shields.io/static/v1?label=Create%20New&message=Issue&color=4EC820&logo=github&style=for-the-badge)](https://github.com/tomcollis/PPHook/issues)
+[![](https://img.shields.io/static/v1?label=Create%20New&message=Issue&color=4EC820&logo=github&style=for-the-badge)](https://github.com/tomcollis/HookStack/issues)
 
 ___
 ## Acknowledgements
