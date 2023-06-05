@@ -10,7 +10,7 @@ micros:
     presets:
       env:
         - name: MY_DATA_KEY
-          description: Integrate my new Space App with my new Collection. Yes!!
+          description: Integrate Space App with Collection
           default: "please input your data key"
         - name: API_KEY
           description: API Key for retrieving data
