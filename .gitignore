@@ -107,3 +107,6 @@ dist
 # Deta files
 .deta/
 .space/
+
+# Photoshop
+.psd
