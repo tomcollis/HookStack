@@ -1,7 +1,7 @@
 {
   "name": "HookStack",
-  "description": "A package that receives webhooks, stores them for later retrieval and when retrieved then auto deletes the webhooks.",
-  "homepage": "https://tcollis.co.uk/",
+  "description": "A package that receives webhooks, stores them for later retrieval and then auto deletes.",
+  "homepage": "https://tcollis.co.uk/2023/hookstack/",
   "keywords": [
     "PPHook",
     "webhook",
