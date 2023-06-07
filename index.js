@@ -139,7 +139,7 @@ app.get('/webhooks/:source', async (req, res) => {
 // then delete all retrieved records
 app.get('/webhooks/', async (req, res) => {
     // set source to unknown as not provided in URL
-    const { source } = 'unknown';
+    var source = "unknown";
     console.log('Retrieving items for unknown source');
     // ORIGINAL - Get all records from source system
     // const { value: items} = await db.fetch([{"source":source}]).next();
