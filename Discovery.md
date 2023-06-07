@@ -1,7 +1,7 @@
 ---
 app_name: "HookStack"
 title: "HookStack"
-tagline: "A package that receives webhooks, stores them for later retrieval and then auto deletes."
+tagline: "This app stores webhooks for later retrieval and then auto deletes."
 theme_color: "#4998d5"
 git: "https://github.com/tomcollis/HookStack"
 homepage: "https://tcollis.co.uk/2023/hookstack/"
