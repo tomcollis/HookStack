@@ -1,0 +1,7 @@
+# Photoshop
+.psd
+
+# dotenv environment variables file
+.env
+.env.test
+.env.local
