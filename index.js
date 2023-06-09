@@ -10,7 +10,7 @@ var path = require('path');
 /**
  * Deta variables.
  */
-const myDataKey = process.env.MY_DATA_KEY;
+const myDataKey = process.env.DETA_PROJECT_KEY;
 const deta = Deta(myDataKey);
 // Deta database name
 const db = deta.Base('HookStack');
