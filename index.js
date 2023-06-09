@@ -47,9 +47,8 @@ app.post('/p/', function(req, res){
     // Check Post Length
     // post is empty - send error
     if (Object.keys(req.body).length <= 0) {
-      res.status(404);
+      res.status(204);
       res.set('Cache-control', `no-store`)
-      res.send({ error: "no data" });
       console.log('received empty request');
     } else {
     // post is not empty - record to Deta base
