@@ -46,7 +46,7 @@ app.post('/p/', function(req, res){
     // Check Post Length
     // post is empty - send error
     if (Object.keys(req.body).length <= 0) {
-      res.status(204);
+      res.status(200);
       res.set('Cache-control', `no-store`)
       console.log('received empty request');
       res.send({ result: "no data" });
