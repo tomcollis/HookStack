@@ -1,6 +1,7 @@
+# HookStack
+
 ![HookStack](https://github.com/tomcollis/HookStack/blob/main/img/HookStack-Banner.png?raw=true)
 
-# HookStack
 [![Buy me coffee](https://img.shields.io/badge/Buy%20me%20-coffee!-orange.svg?logo=buy-me-a-coffee&color=795548)](https://paypal.me/TomCollisUK/2)
 [![GitHub stars](https://img.shields.io/github/stars/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/issues)
@@ -14,6 +15,7 @@ This service allows webhooks to be **Pushed** (submitted) and saved, and then **
 This service can also be used with some cloud hosted automation services that do not allow webhooks but do allow scheduled get requests (e.g., Microsoft Power Automate).
 
 ___
+
 ## Environment Variables
 
 To run this code, you will need to provide following environment variables, you will be prompted automatically when using [Deta Space](https://deta.space/).
@@ -23,17 +25,19 @@ To run this code, you will need to provide following environment variables, you 
 `API_KEY` - you can use anything or generate something 'secure' at [keycdn Tools](https://tools.keycdn.com/sha256-online-generator)
 
 ___
+
 ## Deploy to [Deta Space](https://deta.space/)
 
-This app has not yet been published to Deta Space.
+[Deta Space - v0.0.10](https://deta.space/discovery/r/d3ym5spf7cytxjsy)
 
-You will automatically be prompted to enter the required environment variables.
+You can configure the required API key in app settings.
 All data will be private in your own account.
 
 ___
+
 ## API Reference
 
-#### Post Webhook
+### Post Webhook
 
 ```http
   POST /p
@@ -45,7 +49,7 @@ ___
 
 All data is stored in your [Deta Space](https://deta.space/) account in a Deta Base called 'HookStack'. This means your data is not available for me or anyone else to see, but do not forget it is only protected by your API key. Your API Key is not required to post data.
 
-###### Example
+#### Example
 
 ```http
   POST /p?source=system-name
@@ -71,6 +75,7 @@ The BODY data can be in any format, with as many or as few fields as you want. T
           "source": "system-2"
         }
 ```
+
 This response is what is stored in the Deta Base:
 
 | Parameter | Type     | Description                |
@@ -81,18 +86,19 @@ This response is what is stored in the Deta Base:
 
 ___
 
-#### Get items for source system by id
+### Get items for source system by id
 
 ```http
   GET /webhooks/$source
 ```
+
 This will return all webhooks from the system with a matching source key and delete all corresponding results from the Deta Base by design to minimise the length of time your data is stored online.
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `api-key` | `string` | **Required**. Your API key |
 
-###### Example Response
+#### Example Response
 
 ```http
   GET /webhooks/system-2?api-key=verysecure
@@ -123,11 +129,12 @@ This will return all webhooks from the system with a matching source key and del
 
 The webhooks received are returned in an array called 'items', this means they can be processed through another application.
 
-#### Get items for source system unknown
+### Get items for source system unknown
 
 ```http
   GET /webhooks
 ```
+
 This will retrieve all webhooks posted without a source key, it will also delete all corresponding results from the database by design.
 
 | Parameter | Type     | Description                |
@@ -137,16 +144,19 @@ This will retrieve all webhooks posted without a source key, it will also delete
 The responses are the same as the above request with the included system-id.
 
 ___
+
 ## Feedback
 
 If you have any feedback, you can:
 
-[![](https://img.shields.io/static/v1?label=Message%20on&message=Telegram&color=27A7E7&logo=telegram&style=for-the-badge)](https://t.me/tomcollis)
+[![Message Me](https://img.shields.io/static/v1?label=Message%20on&message=Telegram&color=27A7E7&logo=telegram&style=for-the-badge)](https://t.me/tomcollis)
 
 or
 
-[![](https://img.shields.io/static/v1?label=Create%20New&message=Issue&color=4EC820&logo=github&style=for-the-badge)](https://github.com/tomcollis/HookStack/issues)
+[![Create Issue](https://img.shields.io/static/v1?label=Create%20New&message=Issue&color=4EC820&logo=github&style=for-the-badge)](https://github.com/tomcollis/HookStack/issues)
 
 ___
+
 ## Acknowledgements
- - This was a sample app, used as my starting point. [ExpressJS Example - Simple Web API](https://github.com/expressjs/express/blob/28db2c2c5cf992c897d1fbbc6b119ee02fe32ab1/examples/web-service/index.js)
+
+This was a sample app, used as my starting point. [ExpressJS Example - Simple Web API](https://github.com/expressjs/express/blob/28db2c2c5cf992c897d1fbbc6b119ee02fe32ab1/examples/web-service/index.js)
