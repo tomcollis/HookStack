@@ -12,9 +12,6 @@ micros:
     primary: true
     presets:
       env:
-        - name: MY_DATA_KEY
-          description: Integrate Space App with Collection
-          default: "please input your data key"
         - name: API_KEY
           description: API Key for retrieving data
           default: "very-long-password"
