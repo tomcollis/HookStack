@@ -164,7 +164,8 @@ app.use(function(req, res){
   res.send({ error: "can't find that" });
 });
 
+// Port is required by Deta Space
 const port = parseInt(process.env.PORT || 443);
-app.listen(port, () => {
-   console.log(`HookStack: listening on port ${port}`);
-});
+ app.listen(port, () => {
+    console.log(`HookStack: listening on port ${port}`);
+ });

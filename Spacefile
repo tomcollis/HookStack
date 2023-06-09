@@ -5,11 +5,11 @@ micros:
   - name: HookStack
     src: ./
     engine: nodejs16
+    primary: true
     public_routes:
       - "/p" # allow post requests anonymously
       - "/webhooks/*" # allow retrieval by system name with api-key
       - "/webhooks" # allow unknown system retrieval with api-key
-    primary: true
     presets:
       env:
         - name: API_KEY
