@@ -33,39 +33,32 @@ app.get('/', function(req, res){
     //res.send({ error: "home" });
 });
 
-// Legacy - POST Endpoint
-
-// app.post('/', function(req, res){
-//     res.status(404);
-//     res.set('Cache-control', `no-store`)
-//     res.send({ error: "data shouldn't be posted here" });
-//     console.log('received: data posted to wrong endpoint');
-// });
-
 // the following, accepts any http posts that contains data
 // and then saves it to a database using the source parameter
 // for the system-id field and saving the body as a JSON object
 
 app.post('/p/', function(req, res){
-    // post is empty
-    if (req.body.length <= 0) {
-    res.status(404);
-    res.set('Cache-control', `no-store`)
-    res.send({ error: "no data" });
-    console.log('received: empty request');
-    } else {
-    // post is not empty
+    // Set system variable
     var source = req.query['source'];
     if (source === undefined) {
-        var source = 'unknown';
-      };
+      var source = 'unknown';
+    };
     var timeKey = Date.now();
-    console.log('receiving data from: ' + source + ' at ' + timeKey);
-    db.put({ key: timeKey.toString(), body: req.body, source });
-    res.status(200);
-    res.set('Cache-control', `no-store`)
-    res.send({ success: "data received", key: timeKey, body: req.body, source });
-    console.log('data received and processed');
+    // Check Post Length
+    // post is empty - send error
+    if (Object.keys(req.body).length <= 0) {
+      res.status(404);
+      res.set('Cache-control', `no-store`)
+      res.send({ error: "no data" });
+      console.log('received empty request');
+    } else {
+    // post is not empty - record to Deta base
+      console.log('receiving data from ' + source + ' at ' + timeKey);
+      db.put({ key: timeKey.toString(), body: req.body, source });
+      res.status(200);
+      res.set('Cache-control', `no-store`)
+      res.send({ success: "data received", key: timeKey, body: req.body, source });
+      console.log('data received and processed');
     }
 });
 
