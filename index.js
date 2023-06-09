@@ -15,9 +15,7 @@ const deta = Deta(myDataKey);
 // Deta database name
 const db = deta.Base('HookStack');
 
-// create an error with .status. we
-// can then use the property in our
-// custom error handler (Connect repects this prop as well)
+// create an error with .status. to use in our custom error handler
 
 function error(status, msg) {
   var err = new Error(msg);
@@ -35,16 +33,14 @@ app.get('/', function(req, res){
     //res.send({ error: "home" });
 });
 
-// the following, accepts any http posts that contains data
-// and then saves it to a database using the source parameter
-// for the system-id field and saving the body as a JSON object
+// Legacy - POST Endpoint
 
-app.post('/', function(req, res){
-    res.status(404);
-    res.set('Cache-control', `no-store`)
-    res.send({ error: "data shouldn't be posted here" });
-    console.log('received: data posted to wrong endpoint');
-});
+// app.post('/', function(req, res){
+//     res.status(404);
+//     res.set('Cache-control', `no-store`)
+//     res.send({ error: "data shouldn't be posted here" });
+//     console.log('received: data posted to wrong endpoint');
+// });
 
 // the following, accepts any http posts that contains data
 // and then saves it to a database using the source parameter
@@ -73,10 +69,7 @@ app.post('/p/', function(req, res){
     }
 });
 
-// here we validate the API key,
-// by mounting this middleware to /api
-// meaning only paths prefixed with "/api"
-// will cause this middleware to be invoked
+// here we validate the API key
 
 app.use('/', function(req, res, next){
   var key = req.query['api-key'];
@@ -91,7 +84,7 @@ app.use('/', function(req, res, next){
 
 // valid api key
 // api keys do_not_serve as authentication, merely to
-// track API usage or help prevent malicious behavior etc.
+// help prevent malicious behavior etc.
 
 var apiKeys = process.env.API_KEY;
 
@@ -100,27 +93,21 @@ var apiKeys = process.env.API_KEY;
 
 // get all records for source provided in URL
 // then delete all retrieved records
+
 app.get('/webhooks/:source', async (req, res) => {
     // Get source from URL parameter
     const { source } = req.params
     console.log('Retrieving items for source: ' + source);
 
-    // ORIGINAL - Get all records from source system
-    // const { value: items} = await db.fetch([{"source":source}]);
-    // console.log('Retrieved ' + items.length + ' items');
-
     // START NEW PART
-
     let resA = await db.fetch([{"source":source}]);
     let items = resA.items;
-    
     // continue fetching until last is not seen
     while (resA.last){
       resA = await db.fetch([{"source":source}], {last: resA.last});
       items = items.concat(resA.items);
     }
     console.log('Retrieved ' + items.length + ' items');
-    
     // END NEW PART
 
     // Create response
@@ -137,28 +124,23 @@ app.get('/webhooks/:source', async (req, res) => {
 
 // get all records for source unknown
 // then delete all retrieved records
+
 app.get('/webhooks/', async (req, res) => {
     // set source to unknown as not provided in URL
     var source = "unknown";
     console.log('Retrieving items for unknown source');
-    // ORIGINAL - Get all records from source system
-    // const { value: items} = await db.fetch([{"source":source}]).next();
-    // console.log('Retrieved ' + items.length + ' items');
-
+    
     // START NEW PART
-
     let resA = await db.fetch([{"source":source}]);
     let items = resA.items;
-    
     // continue fetching until last is not seen
     while (resA.last){
       resA = await db.fetch([{"source":source}], {last: resA.last});
       items = items.concat(resA.items);
     }
     console.log('Retrieved ' + items.length + ' items');
-    
     // END NEW PART
-
+    
     // Create response
     res.set('Cache-control', `no-store`)
     res.setHeader("Content-Count", items.length);
@@ -171,14 +153,10 @@ app.get('/webhooks/', async (req, res) => {
     }
 });
 
-// middleware with an arity of 4 are considered
-// error handling middleware. When you next(err)
-// it will be passed through the defined middleware
-// in order, but ONLY those with an arity of 4, ignoring
-// regular middleware.
+// error handling middleware. When you next(err) it will
+// be passed through the defined middleware in order
+
 app.use(function(err, req, res, next){
-  // whatever you want here, feel free to populate
-  // properties on `err` to treat it differently in here.
   res.status(err.status || 500);
   res.set('Cache-control', `no-store`)
   res.send({ error: err.message });
@@ -187,6 +165,7 @@ app.use(function(err, req, res, next){
 // our custom JSON 404 middleware. Since it's placed last
 // it will be the last middleware called, if all others
 // invoke next() and do not respond.
+
 app.use(function(req, res){
   res.status(404);
   res.set('Cache-control', `no-store`)
