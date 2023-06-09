@@ -29,8 +29,7 @@ function error(status, msg) {
 app.get('/', function(req, res){
     res.status(200);
     res.set('Cache-control', `no-store`)
-    res.sendFile(path.join(__dirname, 'index.html'));
-    //res.send({ error: "home" });
+    res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 // the following, accepts any http posts that contains data
@@ -50,6 +49,7 @@ app.post('/p/', function(req, res){
       res.status(204);
       res.set('Cache-control', `no-store`)
       console.log('received empty request');
+      res.send({ result: "no data" });
     } else {
     // post is not empty - record to Deta base
       console.log('receiving data from ' + source + ' at ' + timeKey);
@@ -168,4 +168,5 @@ app.use(function(req, res){
 const port = parseInt(process.env.PORT || 443);
  app.listen(port, () => {
     console.log(`HookStack: listening on port ${port}`);
+    console.log(`Version 0.0.6`);
  });
