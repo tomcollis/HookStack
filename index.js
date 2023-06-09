@@ -26,10 +26,8 @@ function error(status, msg) {
 // the following, accepts http get requests and provides
 // a simple help guide or introduction
 
-app.get('/', function(req, res){
-    res.status(200);
-    res.set('Cache-control', `no-store`)
-    res.sendFile(path.join(__dirname, "/index.html"));
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/frontend/index.html'));
 });
 
 // the following, accepts any http posts that contains data
