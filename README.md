@@ -28,7 +28,7 @@ ___
 
 ## Deploy to [Deta Space](https://deta.space/)
 
-[Deta Space - v0.0.11](https://deta.space/discovery/r/wclfw7wygeujrgxn)
+[Deta Space](https://deta.space/discovery/@tmhy-tomuky2k/hookstack)
 
 You can configure the required API key in app settings.
 All data will be private in your own account.
