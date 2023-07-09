@@ -166,5 +166,5 @@ app.use(function(req, res){
 const port = parseInt(process.env.PORT || 443);
  app.listen(port, () => {
     console.log(`HookStack: listening on port ${port}`);
-    console.log(`Version 0.0.6`);
+    console.log(`Version 0.0.11`);
  });

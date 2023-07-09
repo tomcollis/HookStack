@@ -2,7 +2,7 @@
 
 ![HookStack](https://github.com/tomcollis/HookStack/blob/main/img/HookStack-Banner.png?raw=true)
 
-[![Buy me coffee](https://img.shields.io/badge/Buy%20me%20-coffee!-orange.svg?logo=buy-me-a-coffee&color=795548)](https://paypal.me/TomCollisUK/2)
+[![Buy me coffee](https://img.shields.io/badge/Buy%20me%20-coffee!-orange.svg?logo=buy-me-a-coffee&color=795548)](https://paypal.me/TomCollisUK/3)
 [![GitHub stars](https://img.shields.io/github/stars/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/tomcollis/HookStack)](https://github.com/tomcollis/HookStack/issues)
 [![Github All Releases download count](https://img.shields.io/github/downloads/tomcollis/HookStack/total.svg?style=flat)](https://github.com/tomcollis/HookStack/releases/latest)
@@ -28,7 +28,7 @@ ___
 
 ## Deploy to [Deta Space](https://deta.space/)
 
-[Deta Space - v0.0.10](https://deta.space/discovery/r/d3ym5spf7cytxjsy)
+[Deta Space - v0.0.11](https://deta.space/discovery/r/wclfw7wygeujrgxn)
 
 You can configure the required API key in app settings.
 All data will be private in your own account.
