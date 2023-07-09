@@ -2,8 +2,12 @@
 v: 0
 icon: img\HookStack-Logo_512px.png
 micros:
+  - name: frontend
+    src: ./
+    engine: static
+    serve: /frontend
   - name: HookStack
-    src: .
+    src: ./
     engine: nodejs16
     primary: true
     run: "node index.js"
